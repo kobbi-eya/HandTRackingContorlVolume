@@ -1,10 +1,11 @@
 import cv2
 import mediapipe as mp
 import time
+import HandCrackingModule as htm
 
-
-#detector = handDetector()
+detector = htm.handDetector()
 pTime = 0
+cTime = 0
 cap = cv2.VideoCapture(0)
 while True:
     success, img = cap.read()
@@ -12,7 +13,7 @@ while True:
         break
 
     img = detector.findHands(img)
-    lmList= detector.findPosition (img)
+    lmList= detector.findPosition (img,False)
     print(lmList)
 
     cTime = time.time()
